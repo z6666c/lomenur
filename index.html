@@ -3,505 +3,532 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>لومنور | استشارات إدارية واستراتيجية</title>
+<title>لومنور | من الرؤية إلى الأثر</title>
 <meta name="description" content="لومنور شركة سعودية متخصصة في تطوير الأداء المؤسسي والتحول الاستراتيجي — من الرؤية إلى الأثر.">
+<meta name="theme-color" content="#060c17">
 <link rel="icon" href="assets/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=Noto+Kufi+Arabic:wght@300;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --navy:#0b1627;--navy2:#111f35;--navy3:#182a47;
-  --gold:#b08f5c;--gold2:#d4b47e;
-  --ink:#0f1a2b;--muted:#6b7686;--line:#e6e2d8;--paper:#f7f5f0;--white:#fff;
-  --ff:'IBM Plex Sans Arabic',system-ui,sans-serif;
+  --bg:#060c17;--bg2:#0b1627;--ink:#f3efe7;--dim:rgba(243,239,231,.62);--faint:rgba(243,239,231,.3);
+  --gold:#b08f5c;--gold2:#d9bb84;--line:rgba(217,187,132,.22);
+  --body:'IBM Plex Sans Arabic',system-ui,sans-serif;--head:'Noto Kufi Arabic','IBM Plex Sans Arabic',sans-serif;--mono:ui-monospace,'SF Mono',Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--ff);color:var(--ink);background:var(--white);line-height:1.8;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{font-family:var(--body);color:var(--ink);background:var(--bg);line-height:1.85;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
 a{color:inherit;text-decoration:none}
 img{display:block;max-width:100%}
-.wrap{width:min(1160px,92%);margin-inline:auto}
-section{padding:96px 0}
-.eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:.8rem;letter-spacing:.18em;font-weight:600;text-transform:uppercase}
-.eyebrow::before{content:"";width:36px;height:2px;background:var(--gold)}
-.eyebrow .en{font-family:system-ui,sans-serif}
-h2{font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:700;line-height:1.3;margin:14px 0 10px}
-.lead{color:var(--muted);font-size:1.1rem;max-width:640px}
-.num{font-family:system-ui,sans-serif;font-weight:300;font-size:2.6rem;color:var(--gold);line-height:1}
+::selection{background:var(--gold);color:var(--bg)}
+.wrap{width:min(1240px,90%);margin-inline:auto}
+h1,h2,h3,.head{font-family:var(--head)}
+.en{font-family:var(--mono);letter-spacing:.3em;font-size:.68rem;text-transform:uppercase;color:var(--gold)}
 
-/* nav */
-header{position:fixed;inset-inline:0;top:0;z-index:50;transition:.3s;padding:18px 0}
-header.on{background:rgba(11,22,39,.92);backdrop-filter:blur(10px);padding:10px 0;box-shadow:0 2px 20px rgba(0,0,0,.25)}
-.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.brand{display:flex;align-items:center;gap:12px;color:#fff}
-.brand img{width:38px}
-.brand b{font-family:system-ui,sans-serif;letter-spacing:.3em;font-weight:600;font-size:1rem}
-.nav ul{display:flex;gap:28px;list-style:none}
-.nav ul a{color:rgba(255,255,255,.82);font-size:.92rem;font-weight:500;transition:.2s}
-.nav ul a:hover{color:var(--gold2)}
-.btn{display:inline-block;padding:12px 26px;border:1px solid var(--gold);color:var(--gold2);border-radius:2px;font-weight:600;font-size:.92rem;transition:.25s}
-.btn:hover{background:var(--gold);color:var(--navy)}
-.btn.solid{background:var(--gold);color:var(--navy)}
-.btn.solid:hover{background:var(--gold2)}
-.burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+/* grain + vignette */
+.grain{position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:90;opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.vig{position:fixed;inset:0;pointer-events:none;z-index:89;background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.55))}
+
+/* letterbox bars */
+.bar{position:fixed;inset-inline:0;height:0;background:#000;z-index:95;transition:height 1.4s var(--ease)}
+.bar.t{top:0}.bar.b{bottom:0}
+body.intro .bar{height:9vh}
+
+/* preloader */
+.pre{position:fixed;inset:0;z-index:100;background:#000;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:26px;transition:opacity .9s var(--ease),visibility .9s}
+.pre.done{opacity:0;visibility:hidden}
+.pre img{width:70px;animation:pulse 1.6s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.5;transform:scale(.96)}}
+.pre .l{width:160px;height:1px;background:rgba(255,255,255,.12);overflow:hidden}
+.pre .l i{display:block;height:100%;width:0;background:var(--gold);animation:load 1.8s var(--ease) forwards}
+@keyframes load{to{width:100%}}
+.pre .en{color:var(--faint)}
+
+/* progress + nav */
+.prog{position:fixed;top:0;inset-inline-start:0;height:2px;background:var(--gold);width:0;z-index:96}
+header{position:fixed;inset-inline:0;top:0;z-index:80;padding:26px 0;mix-blend-mode:difference;transition:.5s}
+header .wrap{display:flex;justify-content:space-between;align-items:center}
+.brand{display:flex;align-items:center;gap:14px}
+.brand img{width:34px}
+.brand b{font-family:var(--mono);letter-spacing:.42em;font-weight:500;font-size:.8rem}
+.menu-btn{background:none;border:0;color:#fff;cursor:pointer;display:flex;align-items:center;gap:14px;font-family:var(--body);font-size:.8rem;letter-spacing:.1em}
+.menu-btn span{display:block;width:30px;height:1px;background:#fff;position:relative;transition:.4s}
+.menu-btn span::before,.menu-btn span::after{content:"";position:absolute;inset-inline:0;height:1px;background:#fff;transition:.4s}
+.menu-btn span::before{top:-8px}.menu-btn span::after{top:8px}
+body.nav-open .menu-btn span{background:transparent}
+body.nav-open .menu-btn span::before{top:0;transform:rotate(45deg)}
+body.nav-open .menu-btn span::after{top:0;transform:rotate(-45deg)}
+
+/* fullscreen menu */
+.menu{position:fixed;inset:0;z-index:79;background:var(--bg);clip-path:inset(0 0 100% 0);transition:clip-path .9s var(--ease);display:flex;align-items:center}
+body.nav-open .menu{clip-path:inset(0 0 0 0)}
+.menu ol{list-style:none;counter-reset:m}
+.menu li{counter-increment:m;display:flex;align-items:baseline;gap:22px;padding:10px 0;opacity:0;transform:translateY(30px);transition:.7s var(--ease)}
+body.nav-open .menu li{opacity:1;transform:none}
+.menu li::before{content:counter(m,decimal-leading-zero);font-family:var(--mono);color:var(--gold);font-size:.8rem}
+.menu a{font-family:var(--head);font-size:clamp(1.8rem,5vw,3.4rem);font-weight:300;color:var(--dim);transition:.3s}
+.menu a:hover{color:var(--ink);padding-inline-start:16px}
+.menu .side{position:absolute;bottom:40px;inset-inline-start:5%;color:var(--faint);font-size:.85rem;display:grid;gap:4px}
+.menu .side a{font-family:var(--body);font-size:.95rem;color:var(--dim)}
+
+/* scenes */
+.scene{position:relative;min-height:clamp(600px,100vh,1000px);display:flex;align-items:center;padding:120px 0;overflow:hidden}
+.scene .bg{position:absolute;inset:-12% 0;background-size:cover;background-position:center;will-change:transform;z-index:0}
+.scene .bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(6,12,23,.6) 30%,rgba(6,12,23,.6) 70%,var(--bg) 100%)}
+.scene .wrap{position:relative;z-index:1}
+.chap{display:flex;align-items:center;gap:18px;margin-bottom:34px}
+.chap .en{color:var(--gold)}
+.chap i{flex:0 0 60px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:1s var(--ease) .2s}
+.in .chap i{transform:scaleX(1)}
+h2{font-size:clamp(2.4rem,5.5vw,4.6rem);font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.sub{font-size:clamp(1.05rem,1.6vw,1.35rem);color:var(--dim);font-weight:300;max-width:620px;margin-top:18px}
+
+/* text mask reveal */
+.rv{display:block;overflow:hidden}
+.rv>span{display:block;transform:translateY(110%);transition:transform 1.1s var(--ease)}
+.in .rv>span{transform:none}
+.rv:nth-child(2)>span{transition-delay:.1s}.rv:nth-child(3)>span{transition-delay:.2s}
+.fd{opacity:0;transform:translateY(26px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.in .fd{opacity:1;transform:none}
+.d1{transition-delay:.15s}.d2{transition-delay:.3s}.d3{transition-delay:.45s}.d4{transition-delay:.6s}.d5{transition-delay:.75s}.d6{transition-delay:.9s}
 
 /* hero */
-.hero{min-height:clamp(640px,100vh,960px);display:flex;align-items:center;position:relative;color:#fff;padding:140px 0 100px;
-  background:linear-gradient(100deg,rgba(11,22,39,.96) 35%,rgba(11,22,39,.55) 70%,rgba(11,22,39,.35)),url(assets/hero.jpg) center/cover}
-.hero .wrap{position:relative}
-.hero .tag{color:var(--gold2);font-size:.95rem;font-weight:500;margin-bottom:22px}
-.hero h1{font-size:clamp(3rem,7vw,5.6rem);font-weight:700;line-height:1.15;margin-bottom:22px}
-.hero h1 span{color:var(--gold2)}
-.hero p{font-size:clamp(1.1rem,1.8vw,1.4rem);color:rgba(255,255,255,.85);max-width:560px;font-weight:300;margin-bottom:40px}
-.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero .en{position:absolute;bottom:-50px;inset-inline-start:0;font-family:system-ui,sans-serif;letter-spacing:.35em;font-size:.72rem;color:rgba(255,255,255,.45)}
-.scroll{position:absolute;bottom:30px;inset-inline-end:4%;color:rgba(255,255,255,.5);font-size:.7rem;letter-spacing:.2em;writing-mode:vertical-rl}
+.hero{min-height:clamp(640px,100vh,1000px)}
+.hero .bg{background-image:url(assets/towers.jpg);animation:kb 24s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1) translateY(0)}to{transform:scale(1.12) translateY(-2%)}}
+.hero .bg::after{background:linear-gradient(90deg,rgba(6,12,23,.92) 20%,rgba(6,12,23,.5) 60%,rgba(6,12,23,.3)),linear-gradient(0deg,var(--bg) 0%,transparent 35%)}
+.hero .wrap{padding-top:60px}
+.hero .kicker{display:flex;align-items:center;gap:16px;margin-bottom:34px}
+.hero .kicker i{width:50px;height:1px;background:var(--gold)}
+.hero .kicker span{color:var(--dim);font-size:.9rem;letter-spacing:.05em}
+.hero h1{font-size:clamp(3.4rem,10vw,9rem);font-weight:700;line-height:1.05;letter-spacing:-.02em}
+.hero h1 .gold{color:var(--gold2)}
+.hero h1 .thin{font-weight:300;color:var(--dim)}
+.hero p{margin-top:34px;font-size:clamp(1.1rem,1.8vw,1.45rem);color:var(--dim);font-weight:300;max-width:580px}
+.hero .cta{display:flex;gap:26px;align-items:center;margin-top:52px;flex-wrap:wrap}
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;padding:16px 34px;border:1px solid var(--gold);color:var(--gold2);font-weight:500;font-size:.92rem;overflow:hidden;transition:.5s var(--ease);isolation:isolate}
+.btn::before{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(101%);transition:transform .6s var(--ease);z-index:-1}
+.btn:hover{color:var(--bg)}.btn:hover::before{transform:none}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.5}
+.link{color:var(--dim);font-size:.92rem;border-bottom:1px solid var(--line);padding-bottom:4px;transition:.3s}
+.link:hover{color:var(--gold2);border-color:var(--gold)}
+.hero .meta{position:absolute;bottom:40px;inset-inline:5%;display:flex;justify-content:space-between;align-items:flex-end;z-index:2;color:var(--faint);font-size:.75rem;letter-spacing:.2em}
+.hero .meta .en{color:var(--faint)}
+.scroll{display:flex;flex-direction:column;align-items:center;gap:10px}
+.scroll i{width:1px;height:70px;background:linear-gradient(var(--gold),transparent);transform-origin:top;animation:sc 2.2s var(--ease) infinite}
+@keyframes sc{0%{transform:scaleY(0);transform-origin:top}45%{transform:scaleY(1);transform-origin:top}55%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* marquee */
+.marq{border-block:1px solid var(--line);padding:22px 0;overflow:hidden;white-space:nowrap;background:var(--bg)}
+.marq div{display:inline-block;animation:mq 40s linear infinite}
+.marq span{font-family:var(--head);font-weight:300;font-size:1.3rem;color:var(--faint);margin-inline:40px}
+.marq span b{color:var(--gold);font-weight:300;margin-inline-start:40px}
+@keyframes mq{to{transform:translateX(50%)}}
 
 /* about */
-.about .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
-.about .big{font-size:1.5rem;font-weight:600;line-height:1.6;color:var(--navy);margin:18px 0}
-.about p{color:#3b4454;margin-bottom:14px}
-.about .card{background:var(--navy);color:#fff;padding:48px 42px;border-radius:4px;position:relative;overflow:hidden}
-.about .card::after{content:"";position:absolute;inset-inline-end:-40px;bottom:-40px;width:180px;height:180px;border:1px solid rgba(176,143,92,.35);transform:rotate(45deg)}
-.about .card .l{color:var(--gold2);font-size:.8rem;letter-spacing:.15em;margin-bottom:14px}
-.about .card h3{font-size:1.7rem;font-weight:600;line-height:1.5}
-.about .card h3 span{display:block}
-.about .card .y{margin-top:28px;display:flex;gap:40px}
-.about .card .y b{display:block;font-size:2rem;color:var(--gold2);font-family:system-ui,sans-serif;font-weight:400}
-.about .card .y small{color:rgba(255,255,255,.65)}
+.about .bg{background-image:url(assets/stairs.jpg)}
+.about .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:80px;align-items:end}
+.about .big{font-family:var(--head);font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:300;line-height:1.6;color:var(--ink);margin-top:40px}
+.about .big b{color:var(--gold2);font-weight:500}
+.about p.t{color:var(--dim);font-weight:300;margin-top:22px;font-size:1.05rem}
+.about .stats{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.about .stats div{background:rgba(6,12,23,.7);backdrop-filter:blur(8px);padding:40px 30px}
+.about .stats b{display:block;font-family:var(--mono);font-size:3rem;font-weight:300;color:var(--gold2);line-height:1}
+.about .stats b em{font-style:normal;font-size:1.1rem;color:var(--gold)}
+.about .stats small{display:block;margin-top:12px;color:var(--dim);font-size:.88rem}
 
 /* serve */
-.serve{background:var(--paper)}
-.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:48px}
-.c{background:#fff;padding:40px 32px;border-top:3px solid var(--gold);border-radius:3px;box-shadow:0 10px 40px rgba(15,26,43,.05);transition:.3s}
-.c:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(15,26,43,.1)}
-.c h3{font-size:1.25rem;font-weight:600;margin:16px 0 10px;color:var(--navy)}
-.c p{color:var(--muted);font-size:.98rem}
-.partner{margin-top:48px;background:var(--navy);color:#fff;padding:40px 44px;border-radius:4px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
-.partner h4{font-size:1.4rem;color:var(--gold2);white-space:nowrap}
-.partner p{color:rgba(255,255,255,.8)}
+.serve{background:var(--bg);min-height:auto}
+.serve .list{margin-top:60px;border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:90px 1fr 1fr;gap:30px;align-items:center;padding:46px 0;border-bottom:1px solid var(--line);position:relative;transition:.5s}
+.row::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(217,187,132,.06),transparent);opacity:0;transition:.5s}
+.row:hover::before{opacity:1}
+.row .n{font-family:var(--mono);color:var(--gold);font-size:.85rem;letter-spacing:.2em}
+.row h3{font-size:clamp(1.3rem,2.6vw,2rem);font-weight:500;transition:.5s var(--ease)}
+.row:hover h3{padding-inline-start:18px;color:var(--gold2)}
+.row p{color:var(--dim);font-weight:300}
+.serve .partner{margin-top:70px;display:grid;grid-template-columns:auto 1fr;gap:50px;align-items:start;padding:50px;border:1px solid var(--line);position:relative}
+.serve .partner::before{content:"";position:absolute;top:-1px;inset-inline-start:50px;width:120px;height:1px;background:var(--gold)}
+.serve .partner h3{font-size:1.6rem;font-weight:500;color:var(--gold2);white-space:nowrap}
+.serve .partner p{color:var(--dim);font-weight:300;font-size:1.05rem}
 
 /* vision */
-.vision .two{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:48px}
-.vbox{padding:44px 40px;border:1px solid var(--line);border-radius:4px;position:relative}
-.vbox h3{color:var(--gold);font-size:1rem;letter-spacing:.1em;margin-bottom:14px}
-.vbox p{font-size:1.25rem;font-weight:500;line-height:1.7;color:var(--navy)}
-.values{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border:1px solid var(--line);border-radius:4px;overflow:hidden}
-.v{padding:36px 28px;border-inline-start:1px solid var(--line);text-align:center}
-.v:first-child{border:0}
-.v h4{font-size:1.3rem;color:var(--navy);margin-bottom:6px}
-.v p{color:var(--muted);font-size:.92rem}
-.v i{display:block;width:10px;height:10px;background:var(--gold);transform:rotate(45deg);margin:0 auto 18px}
+.vision{background:var(--bg2);min-height:auto}
+.vision .two{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:60px}
+.vision .two div{background:var(--bg2);padding:60px 50px}
+.vision .two .en{display:block;margin-bottom:20px}
+.vision .two p{font-family:var(--head);font-weight:300;font-size:clamp(1.25rem,2vw,1.6rem);line-height:1.7}
+.vals{display:grid;grid-template-columns:repeat(4,1fr);margin-top:1px;gap:1px;background:var(--line);border:1px solid var(--line);border-top:0}
+.vals div{background:var(--bg2);padding:44px 30px;position:relative;overflow:hidden;transition:.5s}
+.vals div::after{content:"";position:absolute;bottom:0;inset-inline:0;height:2px;background:var(--gold);transform:scaleX(0);transition:.6s var(--ease)}
+.vals div:hover::after{transform:none}
+.vals div:hover{background:#101e34}
+.vals .n{font-family:var(--mono);color:var(--gold);font-size:.7rem;letter-spacing:.3em}
+.vals h4{font-family:var(--head);font-size:1.7rem;font-weight:500;margin:14px 0 6px}
+.vals p{color:var(--dim);font-weight:300;font-size:.92rem}
 
 /* philosophy */
-.philo{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
-.philo::before{content:"";position:absolute;inset:0;background:url(assets/hero.jpg) center/cover;opacity:.08}
-.philo .wrap{position:relative}
-.philo .eyebrow{justify-content:center}.philo .eyebrow::before{display:none}
-.philo blockquote{font-size:clamp(1.7rem,3.4vw,2.8rem);font-weight:600;line-height:1.5;max-width:800px;margin:24px auto 28px}
-.philo blockquote span{color:var(--gold2)}
-.philo p{color:rgba(255,255,255,.75);max-width:640px;margin:auto;font-size:1.08rem}
+.philo{text-align:center;min-height:clamp(560px,90vh,900px)}
+.philo .bg{background-image:url(assets/sky.jpg)}
+.philo .bg::after{background:linear-gradient(180deg,var(--bg),rgba(6,12,23,.72) 25%,rgba(6,12,23,.72) 75%,var(--bg))}
+.philo .q{font-family:Georgia,serif;font-size:9rem;line-height:.5;color:var(--gold);opacity:.6;display:block;margin-bottom:30px}
+.philo blockquote{font-family:var(--head);font-size:clamp(1.9rem,4.6vw,4rem);font-weight:300;line-height:1.45;max-width:980px;margin:0 auto}
+.philo blockquote b{font-weight:700;color:var(--gold2)}
+.philo p{color:var(--dim);max-width:640px;margin:40px auto 0;font-weight:300;font-size:1.1rem}
 
 /* expertise */
-.exp .list{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
-.e{display:grid;grid-template-columns:70px 1fr;gap:18px;padding:34px 30px;border:1px solid var(--line);border-radius:4px;transition:.3s;background:#fff}
-.e:hover{border-color:var(--gold);box-shadow:0 14px 40px rgba(15,26,43,.07)}
-.e .num{font-size:2rem;padding-top:4px}
-.e h3{font-size:1.2rem;font-weight:600;color:var(--navy)}
-.e small{display:block;font-family:system-ui,sans-serif;letter-spacing:.14em;font-size:.68rem;color:var(--gold);margin:4px 0 10px;text-transform:uppercase}
-.e p{color:var(--muted);font-size:.95rem}
+.exp{background:var(--bg);min-height:auto}
+.exp .list{margin-top:60px;border-top:1px solid var(--line)}
+.ex{display:grid;grid-template-columns:120px 1fr 1.2fr 60px;gap:30px;align-items:center;padding:40px 0;border-bottom:1px solid var(--line);cursor:default;position:relative}
+.ex .n{font-family:var(--mono);font-size:2.6rem;font-weight:300;color:var(--faint);transition:.5s}
+.ex:hover .n{color:var(--gold2)}
+.ex h3{font-size:clamp(1.25rem,2.2vw,1.8rem);font-weight:500;transition:.5s var(--ease)}
+.ex small{display:block;font-family:var(--mono);letter-spacing:.2em;font-size:.65rem;color:var(--gold);margin-top:6px;text-transform:uppercase}
+.ex p{color:var(--dim);font-weight:300;opacity:.55;transition:.6s var(--ease)}
+.ex:hover p,.ex.open p{opacity:1}
+.ex .ar{width:44px;height:44px;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;transition:.5s var(--ease);justify-self:end}
+.ex .ar svg{width:18px;height:18px;stroke:var(--gold2);fill:none;stroke-width:1.5;transition:.5s var(--ease)}
+.ex:hover .ar{background:var(--gold);border-color:var(--gold)}
+.ex:hover .ar svg{stroke:var(--bg);transform:rotate(-45deg)}
 
 /* method */
-.method{background:var(--paper)}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;position:relative}
-.steps::before{content:"";position:absolute;top:28px;inset-inline:12%;height:1px;background:var(--gold);opacity:.5}
-.s{text-align:center;padding:0 18px;position:relative}
-.s .dot{width:56px;height:56px;border-radius:50%;background:var(--navy);color:var(--gold2);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:system-ui,sans-serif;font-weight:500;border:4px solid var(--paper);position:relative}
-.s h3{font-size:1.15rem;color:var(--navy);margin-bottom:10px}
-.s p{color:var(--muted);font-size:.93rem;margin-bottom:14px}
-.s b{display:inline-block;font-size:.8rem;color:var(--gold);font-weight:600;border-top:1px solid var(--line);padding-top:10px}
-.method .note{text-align:center;color:var(--muted);margin-top:44px;font-size:.95rem}
+.method .bg{background-image:url(assets/stairs.jpg);background-position:center 30%}
+.method .bg::after{background:linear-gradient(180deg,var(--bg) 0%,rgba(6,12,23,.86) 40%,var(--bg) 100%)}
+.tl{position:relative;margin-top:70px;padding-inline-start:0}
+.tl::before{content:"";position:absolute;top:0;bottom:0;inset-inline-start:50%;width:1px;background:var(--line)}
+.tl .fill{position:absolute;top:0;inset-inline-start:50%;width:1px;height:0;background:var(--gold);transition:height .2s linear}
+.st{display:grid;grid-template-columns:1fr 80px 1fr;gap:0;align-items:center;padding:30px 0}
+.st .dot{grid-column:2;grid-row:1;width:16px;height:16px;border-radius:50%;background:var(--bg);border:1px solid var(--gold);margin:auto;position:relative;transition:.6s var(--ease)}
+.st.in .dot{background:var(--gold);box-shadow:0 0 0 8px rgba(176,143,92,.15)}
+.st .card{padding:36px;border:1px solid var(--line);background:rgba(6,12,23,.65);backdrop-filter:blur(6px);transition:.6s var(--ease)}
+.st:hover .card{border-color:var(--gold)}
+.st:nth-child(even) .card{grid-column:1}
+.st:nth-child(odd) .card{grid-column:3}
+.st .n{font-family:var(--mono);color:var(--gold);font-size:.75rem;letter-spacing:.3em}
+.st h3{font-size:1.45rem;font-weight:500;margin:10px 0 8px}
+.st p{color:var(--dim);font-weight:300;font-size:.98rem}
+.st b{display:inline-block;margin-top:16px;color:var(--gold2);font-size:.85rem;font-weight:500;padding-top:12px;border-top:1px solid var(--line)}
+.method .note{text-align:center;color:var(--dim);margin-top:50px;font-weight:300}
 
 /* why */
-.why .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
-.why .sticky{position:sticky;top:110px}
-.wl{list-style:none;margin-top:10px}
-.wl li{display:grid;grid-template-columns:52px 150px 1fr;gap:16px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line)}
+.why{background:var(--bg);min-height:auto}
+.why .grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:80px;align-items:start}
+.why .sticky{position:sticky;top:140px}
+.wl{list-style:none;counter-reset:w}
+.wl li{display:grid;grid-template-columns:70px 180px 1fr;gap:20px;align-items:baseline;padding:32px 0;border-bottom:1px solid var(--line)}
 .wl li:first-child{border-top:1px solid var(--line)}
-.wl .num{font-size:1.4rem}
-.wl h4{font-size:1.15rem;color:var(--navy)}
-.wl p{color:var(--muted);font-size:.97rem}
+.wl .n{font-family:var(--mono);font-size:1.4rem;font-weight:300;color:var(--faint)}
+.wl h4{font-family:var(--head);font-size:1.35rem;font-weight:500}
+.wl p{color:var(--dim);font-weight:300}
+.wl li{transition:.5s}.wl li:hover .n{color:var(--gold2)}
 
 /* impact */
-.impact{background:var(--navy2);color:#fff}
-.impact .cards3 .c{background:var(--navy3);border-top-color:var(--gold);box-shadow:none}
-.impact .c h3{color:#fff}.impact .c p{color:rgba(255,255,255,.7)}
-.impact .lead{color:rgba(255,255,255,.75)}
+.impact{min-height:auto}
+.impact .bg{background-image:url(assets/towers.jpg);background-position:center 70%}
+.impact .bg::after{background:linear-gradient(0deg,var(--bg),rgba(6,12,23,.88),var(--bg))}
+.imp{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:60px}
+.imp div{background:rgba(6,12,23,.75);backdrop-filter:blur(8px);padding:50px 40px;position:relative}
+.imp .n{font-family:var(--mono);color:var(--gold);font-size:.7rem;letter-spacing:.3em}
+.imp h3{font-size:1.6rem;font-weight:500;margin:16px 0 12px}
+.imp p{color:var(--dim);font-weight:300}
 
 /* contact */
-.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
-.ci{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:10px}
-.ci div{padding:24px;border:1px solid var(--line);border-radius:4px}
-.ci small{display:block;color:var(--gold);font-size:.8rem;letter-spacing:.08em;margin-bottom:8px}
-.ci a,.ci span{font-weight:600;color:var(--navy);font-size:1.02rem;direction:ltr;display:inline-block}
+.contact{min-height:auto;background:var(--bg)}
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.contact .huge{font-family:var(--head);font-size:clamp(2.6rem,6vw,5rem);font-weight:300;line-height:1.2}
+.contact .huge b{font-weight:700;color:var(--gold2)}
+.ci{display:grid;gap:0;border-top:1px solid var(--line)}
+.ci a,.ci div{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;border-bottom:1px solid var(--line);transition:.4s}
+.ci a:hover{padding-inline:12px;background:rgba(217,187,132,.05)}
+.ci small{color:var(--gold);font-size:.78rem;letter-spacing:.1em}
+.ci span{font-weight:500;font-size:1.1rem;direction:ltr}
 .ci span.ar{direction:rtl}
-.contact .cta{background:var(--navy);color:#fff;padding:48px 42px;border-radius:4px}
-.contact .cta h3{font-size:1.7rem;margin-bottom:12px}
-.contact .cta p{color:rgba(255,255,255,.75);margin-bottom:28px}
+.contact .btns{display:flex;gap:16px;margin-top:40px;flex-wrap:wrap}
 
-footer{background:var(--navy);color:rgba(255,255,255,.6);padding:36px 0;border-top:1px solid rgba(255,255,255,.08);font-size:.85rem}
-footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
-footer .tg{color:var(--gold2);letter-spacing:.3em;font-family:system-ui,sans-serif;font-size:.72rem}
-footer .dis{width:100%;font-size:.75rem;color:rgba(255,255,255,.35)}
-
-/* reveal */
-.js .r{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
-.r.in{opacity:1;transform:none}
-
-@media(max-width:960px){
-  .about .grid,.why .grid,.contact .grid,.vision .two,.exp .list{grid-template-columns:1fr}
-  .cards3{grid-template-columns:1fr}
-  .values{grid-template-columns:1fr 1fr}.v{border:0;border-top:1px solid var(--line)}
-  .steps{grid-template-columns:1fr 1fr;gap:34px}.steps::before{display:none}
-  .partner{grid-template-columns:1fr;gap:14px}
-  .wl li{grid-template-columns:40px 1fr}.wl p{grid-column:2}
-  .why .sticky{position:static}
-  .nav ul{display:none;position:absolute;top:100%;inset-inline:0;background:var(--navy);flex-direction:column;padding:20px 6%;gap:18px}
-  .nav ul.open{display:flex}
-  .burger{display:block}
-  .nav .btn{display:none}
-  section{padding:72px 0}
-}
-
-/* ===== v2 additions ===== */
-.hero::after{content:"";position:absolute;inset-inline:0;bottom:0;height:140px;background:linear-gradient(to bottom,transparent,#fff)}
-.hero .line{width:64px;height:3px;background:var(--gold);margin-bottom:26px;transform-origin:right;animation:grow 1.2s .3s cubic-bezier(.2,.7,.2,1) both}
-@keyframes grow{from{transform:scaleX(0)}}
-.hero h1,.hero .tag,.hero p,.hero .cta{animation:up .9s cubic-bezier(.2,.7,.2,1) both}
-.hero .tag{animation-delay:.1s}.hero h1{animation-delay:.25s}.hero p{animation-delay:.4s}.hero .cta{animation-delay:.55s}
-@keyframes up{from{opacity:0;transform:translateY(28px)}}
-.hero .geo{position:absolute;inset-inline-start:6%;top:50%;transform:translateY(-50%) rotate(45deg);width:260px;height:260px;border:1px solid rgba(176,143,92,.25);pointer-events:none}
-.hero .geo::after{content:"";position:absolute;inset:30px;border:1px solid rgba(176,143,92,.18)}
-.scroll::after{content:"";display:block;width:1px;height:48px;background:linear-gradient(var(--gold),transparent);margin:10px auto 0;animation:drop 1.8s infinite}
-@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
-
-/* stats strip */
-.strip{position:relative;z-index:2;margin-top:-70px;padding:0}
-.strip .wrap{background:#fff;border:1px solid var(--line);border-radius:6px;display:grid;grid-template-columns:repeat(4,1fr);box-shadow:0 30px 60px -20px rgba(11,22,39,.25)}
-.strip div{padding:30px 24px;text-align:center;border-inline-start:1px solid var(--line)}
-.strip div:first-child{border:0}
-.strip b{display:block;font-family:system-ui,sans-serif;font-weight:300;font-size:2.4rem;color:var(--navy);line-height:1.1}
-.strip b em{font-style:normal;color:var(--gold);font-size:1.3rem;vertical-align:top;margin-inline-start:2px}
-.strip small{color:var(--muted);font-size:.9rem}
-
-/* section numbers watermark */
-section.has-wm{position:relative;overflow:hidden}
-.wm{position:absolute;top:40px;inset-inline-end:3%;font-family:system-ui,sans-serif;font-size:14rem;font-weight:700;line-height:1;color:var(--navy);opacity:.035;pointer-events:none;user-select:none}
-.impact .wm,.philo .wm{color:#fff;opacity:.05}
-
-/* icons */
-.ic{width:52px;height:52px;border:1px solid rgba(176,143,92,.45);border-radius:3px;display:flex;align-items:center;justify-content:center;color:var(--gold);margin-bottom:18px;transition:.3s}
-.ic svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.c:hover .ic,.e:hover .ic{background:var(--gold);color:var(--navy);border-color:var(--gold)}
-.e{grid-template-columns:52px 1fr;gap:22px}
-.e .num{display:none}
-
-/* expertise hover accent */
-.e{position:relative}
-.e::before{content:"";position:absolute;inset-inline-start:0;top:0;bottom:0;width:3px;background:var(--gold);transform:scaleY(0);transition:.3s;transform-origin:top}
-.e:hover::before{transform:scaleY(1)}
-
-/* method arrows */
-.s .dot::after{content:"";position:absolute;inset:-9px;border:1px solid rgba(176,143,92,.4);border-radius:50%;transition:.3s}
-.s:hover .dot::after{inset:-14px;border-color:var(--gold)}
-.steps::before{inset-inline:12%;height:2px;background:repeating-linear-gradient(90deg,var(--gold) 0 8px,transparent 8px 16px);opacity:.5}
-
-/* why list hover */
-.wl li{transition:.3s;padding-inline:14px;border-radius:3px}
-.wl li:hover{background:var(--paper)}
-
-/* values hover */
-.v{transition:.3s}.v:hover{background:var(--paper)}.v:hover i{transform:rotate(45deg) scale(1.4)}
-.v i{transition:.3s}
-
-/* quote mark */
-.philo .q{font-family:Georgia,serif;font-size:7rem;line-height:.6;color:var(--gold);opacity:.5;display:block;margin:20px auto 0}
-
-/* contact grid richer */
-.ci div{transition:.3s;display:flex;flex-direction:column;gap:2px}
-.ci div:hover{border-color:var(--gold);transform:translateY(-3px)}
-.ci .ico{color:var(--gold);width:22px;height:22px;margin-bottom:8px}
-.ci .ico svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.contact .cta .btn+.btn{margin-inline-start:10px}
-
-/* footer nav */
-footer .fnav{display:flex;gap:22px;flex-wrap:wrap;list-style:none}
-footer .fnav a{color:rgba(255,255,255,.6);transition:.2s}footer .fnav a:hover{color:var(--gold2)}
+footer{padding:50px 0 40px;border-top:1px solid var(--line);color:var(--faint);font-size:.82rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px}
+footer .dis{width:100%;font-size:.72rem;color:rgba(243,239,231,.22)}
 
 /* floating */
-.fab{position:fixed;bottom:26px;inset-inline-start:26px;z-index:60;display:flex;flex-direction:column;gap:12px}
-.fab a,.fab button{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:0;cursor:pointer;box-shadow:0 10px 30px rgba(0,0,0,.25);transition:.3s}
-.fab .wa{background:#25d366;color:#fff}.fab .wa:hover{transform:translateY(-3px)}
-.fab .wa svg{width:26px;height:26px;fill:currentColor}
-.fab .top{background:var(--navy);color:var(--gold2);opacity:0;pointer-events:none;transform:translateY(10px)}
+.fab{position:fixed;bottom:28px;inset-inline-start:28px;z-index:85;display:flex;flex-direction:column;gap:12px}
+.fab a,.fab button{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);background:rgba(6,12,23,.8);backdrop-filter:blur(8px);cursor:pointer;transition:.4s var(--ease);color:var(--gold2)}
+.fab a:hover,.fab button:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.fab svg{width:22px;height:22px}
+.fab .wa svg{fill:currentColor}
+.fab .top svg{stroke:currentColor;fill:none;stroke-width:1.5}
+.fab .top{opacity:0;pointer-events:none;transform:translateY(10px)}
 .fab .top.show{opacity:1;pointer-events:auto;transform:none}
-.fab .top svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2}
-
-/* progress bar */
-.prog{position:fixed;top:0;inset-inline-start:0;height:3px;background:var(--gold);width:0;z-index:70;transition:width .1s linear}
-
-/* nav active */
-.nav ul a.act{color:var(--gold2)}
-.nav ul a{position:relative}
-.nav ul a::after{content:"";position:absolute;inset-inline:0;bottom:-6px;height:1px;background:var(--gold);transform:scaleX(0);transition:.25s}
-.nav ul a:hover::after,.nav ul a.act::after{transform:scaleX(1)}
 
 @media(max-width:960px){
-  .strip{margin-top:-40px}.strip .wrap{grid-template-columns:1fr 1fr}.strip div{border:0;border-top:1px solid var(--line)}.strip div:nth-child(-n+2){border-top:0}
-  .wm{font-size:8rem;top:20px}
-  .hero .geo{display:none}
-  .fab{bottom:18px;inset-inline-start:18px}
+  .scene{padding:90px 0}
+  .about .grid,.why .grid,.contact .grid,.vision .two{grid-template-columns:1fr;gap:40px}
+  .vals,.imp{grid-template-columns:1fr 1fr}
+  .row{grid-template-columns:60px 1fr}.row p{grid-column:2}
+  .serve .partner{grid-template-columns:1fr;padding:34px;gap:16px}
+  .ex{grid-template-columns:60px 1fr 44px}.ex p{grid-column:2;max-height:none;opacity:1}
+  .tl::before,.tl .fill{inset-inline-start:8px}
+  .st{grid-template-columns:40px 1fr}.st .dot{grid-column:1;grid-row:1}.st .card{grid-column:2!important}
+  .wl li{grid-template-columns:50px 1fr}.wl p{grid-column:2}
+  .why .sticky{position:static}
+  .hero .meta{display:none}
+  body.intro .bar{height:6vh}
+  .menu .side{display:none}
 }
+@media(max-width:560px){.vals,.imp{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv>span,.fd{transform:none;opacity:1}}
 </style>
 </head>
-<body>
+<body class="intro lock">
 
-<header id="hdr">
-  <div class="wrap nav">
-    <a href="#" class="brand"><img src="assets/logo.png" alt="Lomenur"><b>LOMENUR</b></a>
-    <ul id="menu">
-      <li><a href="#about">من نحن</a></li>
-      <li><a href="#serve">لمن نعمل</a></li>
-      <li><a href="#expertise">خبراتنا</a></li>
-      <li><a href="#method">منهجيتنا</a></li>
-      <li><a href="#why">لماذا لومنور</a></li>
-      <li><a href="#contact">تواصل معنا</a></li>
-    </ul>
-    <a href="#contact" class="btn">ابدأ الحوار</a>
-    <button class="burger" id="burger" aria-label="القائمة">☰</button>
+<div class="pre" id="pre"><img src="assets/logo.png" alt=""><div class="l"><i></i></div><span class="en">Lomenur</span></div>
+<div class="bar t"></div><div class="bar b"></div>
+<div class="grain"></div><div class="vig"></div>
+<div class="prog" id="prog"></div>
+
+<header>
+  <div class="wrap">
+    <a href="#top" class="brand"><img src="assets/logo.png" alt="Lomenur"><b>LOMENUR</b></a>
+    <button class="menu-btn" id="mb" aria-label="القائمة"><em style="font-style:normal" id="mbt">القائمة</em><span></span></button>
   </div>
 </header>
 
-<section class="hero" id="top">
+<nav class="menu" id="menu">
   <div class="wrap">
-    <div class="line"></div>
-    <p class="tag">استشارات إدارية واستراتيجية — الملف التعريفي للشركة</p>
-    <h1>من الرؤية<br><span>إلى الأثر</span></h1>
-    <p>تطوير الأداء المؤسسي والتحول الاستراتيجي. نفهم الواقع، نحدد الأولويات، ونساند التنفيذ.</p>
-    <div class="cta">
-      <a href="#expertise" class="btn solid">مجالات خبرتنا</a>
-      <a href="#contact" class="btn">تواصل معنا</a>
+    <ol>
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#serve">لمن نعمل</a></li>
+      <li><a href="#vision">رؤيتنا وقيمنا</a></li>
+      <li><a href="#expertise">مجالات خبرتنا</a></li>
+      <li><a href="#method">منهجية عملنا</a></li>
+      <li><a href="#why">لماذا لومنور</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ol>
+  </div>
+  <div class="side"><span class="en">Riyadh, KSA</span><a href="mailto:info@lomenur.com">info@lomenur.com</a><a href="tel:+966561192222" dir="ltr">+966 56 119 2222</a></div>
+</nav>
+
+<!-- 00 HERO -->
+<section class="scene hero in" id="top">
+  <div class="bg" data-speed="0"></div>
+  <div class="wrap">
+    <div class="kicker fd"><i></i><span>استشارات إدارية واستراتيجية</span></div>
+    <h1>
+      <span class="rv"><span>من <span class="thin">الرؤية</span></span></span>
+      <span class="rv"><span>إلى <span class="gold">الأثر</span></span></span>
+    </h1>
+    <p class="fd d3">تطوير الأداء المؤسسي والتحول الاستراتيجي — نفهم الواقع، نحدد الأولويات، ونساند التنفيذ.</p>
+    <div class="cta fd d4">
+      <a href="#about" class="btn">ابدأ المشاهدة <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+      <a href="#contact" class="link">تواصل معنا</a>
     </div>
-    <span class="en">LOMENUR COMPANY PROFILE</span>
   </div>
-  <span class="scroll">SCROLL</span>
-  <div class="geo"></div>
-</section>
-
-
-<section class="strip">
-  <div class="wrap r">
-    <div><b>2020</b><small>بداية المسيرة الاستشارية</small></div>
-    <div><b>06</b><small>مجالات خبرة متكاملة</small></div>
-    <div><b>04</b><small>مراحل منهجية واضحة</small></div>
-    <div><b>KSA<em>+GCC</em></b><small>حضور في المملكة والخليج</small></div>
+  <div class="meta">
+    <span class="en">Lomenur · Company Profile · 2026</span>
+    <div class="scroll"><span class="en">Scroll</span><i></i></div>
+    <span class="en">Riyadh — Saudi Arabia</span>
   </div>
 </section>
 
-<section class="about has-wm" id="about">
-  <span class="wm">01</span>
+<div class="marq" aria-hidden="true"><div>
+  <span>الاستراتيجية<b>◆</b></span><span>الحوكمة<b>◆</b></span><span>إعادة الهيكلة<b>◆</b></span><span>إدارة المخاطر<b>◆</b></span><span>التحول المؤسسي<b>◆</b></span><span>تحسين الأداء<b>◆</b></span>
+  <span>الاستراتيجية<b>◆</b></span><span>الحوكمة<b>◆</b></span><span>إعادة الهيكلة<b>◆</b></span><span>إدارة المخاطر<b>◆</b></span><span>التحول المؤسسي<b>◆</b></span><span>تحسين الأداء<b>◆</b></span>
+</div></div>
+
+<!-- 01 ABOUT -->
+<section class="scene about" id="about">
+  <div class="bg" data-speed=".25"></div>
   <div class="wrap grid">
-    <div class="r">
-      <div class="eyebrow">01 <span class="en">ABOUT US</span></div>
-      <h2>من نحن</h2>
-      <p class="big">نؤسس لما يستمر.</p>
-      <p>لومنور شركة سعودية متخصصة في تطوير الأداء المؤسسي والتحول الاستراتيجي، تواصل مسيرة استشارية بدأت عام 2020 تحت اسم «مدد».</p>
-      <p>هوية مؤسسية تعكس تطوّر توجهها واتساع رؤيتها لدور الاستشارات في بناء المنظمات.</p>
-      <p>نصمم حلولاً عملية في الاستراتيجية والحوكمة والهيكلة وإدارة المخاطر والتحول المؤسسي وتحسين الأداء، بما يربط التوصيات باحتياجات المنظمة ونتائجها.</p>
+    <div>
+      <div class="chap"><span class="en">Scene 01 — About</span><i></i></div>
+      <h2><span class="rv"><span>من نحن</span></span></h2>
+      <p class="big fd d1">نؤسس <b>لما يستمر.</b> شركة سعودية متخصصة في تطوير الأداء المؤسسي والتحول الاستراتيجي، تواصل مسيرة استشارية بدأت عام 2020 تحت اسم «مدد».</p>
+      <p class="t fd d2">هوية مؤسسية تعكس تطوّر توجهها واتساع رؤيتها لدور الاستشارات في بناء المنظمات. نصمم حلولاً عملية في الاستراتيجية والحوكمة والهيكلة وإدارة المخاطر والتحول المؤسسي وتحسين الأداء، بما يربط التوصيات باحتياجات المنظمة ونتائجها.</p>
     </div>
-    <div class="card r">
-      <div class="l">نهجنا</div>
-      <h3><span>نفهم الواقع.</span><span>نحدد الأولويات.</span><span>نساند التنفيذ.</span></h3>
-      <div class="y">
-        <div><b>2020</b><small>بداية المسيرة الاستشارية</small></div>
-        <div><b>06</b><small>مجالات خبرة متكاملة</small></div>
-      </div>
+    <div class="stats fd d3">
+      <div><b>2020</b><small>بداية المسيرة الاستشارية</small></div>
+      <div><b>06</b><small>مجالات خبرة متكاملة</small></div>
+      <div><b>04</b><small>مراحل منهجية واضحة</small></div>
+      <div><b>KSA<em> +GCC</em></b><small>حضور في المملكة والخليج</small></div>
     </div>
   </div>
 </section>
 
-<section class="serve has-wm" id="serve">
-  <span class="wm">02</span>
+<!-- 02 SERVE -->
+<section class="scene serve" id="serve">
   <div class="wrap">
-    <div class="r">
-      <div class="eyebrow">02 <span class="en">WHO WE SERVE</span></div>
-      <h2>لمن نعمل</h2>
-      <p class="lead">نساند المنظمات في مراحل التطوير والتحول.</p>
+    <div class="chap"><span class="en">Scene 02 — Who we serve</span><i></i></div>
+    <h2><span class="rv"><span>لمن نعمل</span></span></h2>
+    <p class="sub fd d1">نساند المنظمات في مراحل التطوير والتحول.</p>
+    <div class="list fd d2">
+      <div class="row"><span class="n">01</span><h3>الجهات الحكومية وشبه الحكومية</h3><p>تطوير الاستراتيجيات والحوكمة والهياكل بما يدعم المستهدفات المؤسسية.</p></div>
+      <div class="row"><span class="n">02</span><h3>الشركات والمؤسسات الكبرى</h3><p>رفع كفاءة الأداء، ومواءمة التنفيذ مع التوجهات الاستراتيجية.</p></div>
+      <div class="row"><span class="n">03</span><h3>المنشآت في مراحل النمو أو إعادة الهيكلة</h3><p>بناء هياكل ونماذج تشغيل تواكب مرحلة النمو أو التحول.</p></div>
     </div>
-    <div class="cards3">
-      <div class="c r"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 10h18M5 10v9M9 10v9M15 10v9M19 10v9M3 19h18M12 3 3 8h18z"/></svg></div><span class="num">01</span><h3>الجهات الحكومية وشبه الحكومية</h3><p>تطوير الاستراتيجيات والحوكمة والهياكل بما يدعم المستهدفات المؤسسية.</p></div>
-      <div class="c r"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V5l7-2v18M12 21V9l7 2v10M8 8h1M8 12h1M8 16h1M15 14h1M15 17h1"/></svg></div><span class="num">02</span><h3>الشركات والمؤسسات الكبرى</h3><p>رفع كفاءة الأداء، ومواءمة التنفيذ مع التوجهات الاستراتيجية.</p></div>
-      <div class="c r"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 20h18M4 16l5-5 4 4 7-8M15 7h5v5"/></svg></div><span class="num">03</span><h3>المنشآت في مراحل النمو أو إعادة الهيكلة</h3><p>بناء هياكل ونماذج تشغيل تواكب مرحلة النمو أو التحول.</p></div>
-    </div>
-    <div class="partner r">
-      <h4>شراكة مع صُنّاع القرار</h4>
+    <div class="partner fd d3">
+      <h3>شراكة مع صُنّاع القرار</h3>
       <p>مجالس الإدارة والرؤساء التنفيذيون والقيادات العليا ومديرو الاستراتيجية والتطوير والحوكمة والمخاطر؛ لتطوير منظومات الحوكمة والأداء وإدارة مبادرات التحول.</p>
     </div>
   </div>
 </section>
 
-<section class="vision has-wm" id="vision">
-  <span class="wm">03</span>
+<!-- 03 VISION -->
+<section class="scene vision" id="vision">
   <div class="wrap">
-    <div class="r">
-      <div class="eyebrow">03 <span class="en">VISION &amp; VALUES</span></div>
-      <h2>رؤيتنا ورسالتنا وقيمنا</h2>
+    <div class="chap"><span class="en">Scene 03 — Vision & Values</span><i></i></div>
+    <h2><span class="rv"><span>رؤيتنا ورسالتنا وقيمنا</span></span></h2>
+    <div class="two fd d1">
+      <div><span class="en">Vision — رؤيتنا</span><p>أن نكون بيت خبرة سعودياً مرجعياً في تطوير الأداء والتحول المؤسسي، بحضور مؤثر في المملكة ودول الخليج.</p></div>
+      <div><span class="en">Mission — رسالتنا</span><p>تمكين المنظمات من تطوير أدائها عبر استشارات تجمع بين التحليل والتنفيذ، وتحوّل التحديات إلى قرارات أوضح وحلول قابلة للتطبيق.</p></div>
     </div>
-    <div class="two">
-      <div class="vbox r"><h3>رؤيتنا</h3><p>أن نكون بيت خبرة سعودياً مرجعياً في تطوير الأداء والتحول المؤسسي، بحضور مؤثر في المملكة ودول الخليج.</p></div>
-      <div class="vbox r"><h3>رسالتنا</h3><p>تمكين المنظمات من تطوير أدائها عبر استشارات تجمع بين التحليل والتنفيذ، وتحوّل التحديات إلى قرارات أوضح وحلول قابلة للتطبيق.</p></div>
-    </div>
-    <div class="values r">
-      <div class="v"><i></i><h4>الدقة</h4><p>تحليل منهجي وفهم متعمق</p></div>
-      <div class="v"><i></i><h4>النزاهة</h4><p>شفافية وموضوعية المشورة</p></div>
-      <div class="v"><i></i><h4>الشراكة</h4><p>ثقة وفهم مشترك للأهداف</p></div>
-      <div class="v"><i></i><h4>الأثر</h4><p>خطوات عملية وتحسّن ملموس</p></div>
+    <div class="vals fd d2">
+      <div><span class="n">01</span><h4>الدقة</h4><p>تحليل منهجي وفهم متعمق</p></div>
+      <div><span class="n">02</span><h4>النزاهة</h4><p>شفافية وموضوعية المشورة</p></div>
+      <div><span class="n">03</span><h4>الشراكة</h4><p>ثقة وفهم مشترك للأهداف</p></div>
+      <div><span class="n">04</span><h4>الأثر</h4><p>خطوات عملية وتحسّن ملموس</p></div>
     </div>
   </div>
 </section>
 
-<section class="philo has-wm">
-  <span class="wm">04</span>
-  <div class="wrap r">
-    <div class="eyebrow">04 <span class="en">OUR PHILOSOPHY</span></div>
-    <span class="q">”</span>
-    <blockquote>تبدأ الاستشارة بفهم التحدي، وتكتمل قيمتها حين تصبح <span>جزءاً من الحل.</span></blockquote>
-    <p>نؤمن بأن قيمة الاستشارة تُقاس بما تُحدثه من تطور في منظومة العمل، وما تتركه من أثر يمتد إلى ما بعد انتهاء المشروع.</p>
-  </div>
-</section>
-
-<section class="exp has-wm" id="expertise">
-  <span class="wm">05</span>
+<!-- 04 PHILOSOPHY -->
+<section class="scene philo" id="philosophy">
+  <div class="bg" data-speed=".3"></div>
   <div class="wrap">
-    <div class="r">
-      <div class="eyebrow">05 <span class="en">OUR EXPERTISE</span></div>
-      <h2>مجالات خبرتنا</h2>
-      <p class="lead">نبني أسس التوجه والتنظيم، ونرفع الجاهزية وندعم التحول.</p>
-    </div>
-    <div class="list">
-      <div class="e r"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/><path d="M12 3v2M21 12h-2"/></svg></div><span class="num">01</span><div><h3>الاستراتيجية والنمو المؤسسي</h3><small>Strategy &amp; Growth</small><p>نطوّر التوجهات والخطط الاستراتيجية وأطر قياس الأداء ومؤشراته، ونربط الأهداف المؤسسية بمسارات تنفيذ واضحة.</p></div></div>
-      <div class="e r"><div class="ic"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="4"/><rect x="3" y="17" width="6" height="4"/><rect x="15" y="17" width="6" height="4"/><path d="M12 7v4M6 17v-3h12v3"/></svg></div><span class="num">02</span><div><h3>إعادة الهيكلة والنموذج التشغيلي</h3><small>Restructuring &amp; Operating Model</small><p>نصمم الهياكل التنظيمية ونماذج التشغيل، ونوضح الأدوار والصلاحيات، ونحسّن العمليات بما يناسب احتياج المنظمة.</p></div></div>
-      <div class="e r"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg></div><span class="num">03</span><div><h3>الحوكمة</h3><small>Governance</small><p>نطوّر أطر الحوكمة والسياسات والإجراءات التي تعزز وضوح المسؤوليات وفاعلية الرقابة والمساءلة.</p></div></div>
-      <div class="e r"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17h.01"/></svg></div><span class="num">04</span><div><h3>إدارة المخاطر واستمرارية الأعمال</h3><small>Risk Management &amp; Business Continuity</small><p>نحدد المخاطر ونقيّمها، ونبني الأطر والإجراءات التي تدعم جاهزية المنظمة واستمرارية أعمالها.</p></div></div>
-      <div class="e r"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 12a8 8 0 0 1 14-5M20 12a8 8 0 0 1-14 5"/><path d="M18 3v4h-4M6 21v-4h4"/></svg></div><span class="num">05</span><div><h3>التحول المؤسسي وإدارة المبادرات</h3><small>Institutional Transformation</small><p>ننظم مبادرات التحول ونتابع تنفيذها، ونربطها بالأهداف والمستهدفات الاستراتيجية.</p></div></div>
-      <div class="e r"><div class="ic"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0"/><path d="M12 12l4-4"/><path d="M3 12h2M19 12h2M12 21h.01"/></svg></div><span class="num">06</span><div><h3>إعادة البناء وتحسين الأداء</h3><small>Performance Improvement</small><p>نساند المنظمات في معالجة تحديات الأداء وترتيب الأولويات، وبناء خطة عملية للتحسين والنمو.</p></div></div>
-    </div>
+    <div class="chap" style="justify-content:center"><span class="en">Scene 04 — Philosophy</span></div>
+    <span class="q fd">”</span>
+    <blockquote><span class="rv"><span>تبدأ الاستشارة بفهم التحدي،</span></span><span class="rv"><span>وتكتمل قيمتها حين تصبح <b>جزءاً من الحل.</b></span></span></blockquote>
+    <p class="fd d3">نؤمن بأن قيمة الاستشارة تُقاس بما تُحدثه من تطور في منظومة العمل، وما تتركه من أثر يمتد إلى ما بعد انتهاء المشروع.</p>
   </div>
 </section>
 
-<section class="method has-wm" id="method">
-  <span class="wm">06</span>
+<!-- 05 EXPERTISE -->
+<section class="scene exp" id="expertise">
   <div class="wrap">
-    <div class="r">
-      <div class="eyebrow">06 <span class="en">METHODOLOGY</span></div>
-      <h2>منهجية عملنا</h2>
-      <p class="lead">من التشخيص إلى قياس النتائج.</p>
+    <div class="chap"><span class="en">Scene 05 — Expertise</span><i></i></div>
+    <h2><span class="rv"><span>مجالات خبرتنا</span></span></h2>
+    <p class="sub fd d1">نبني أسس التوجه والتنظيم، ونرفع الجاهزية وندعم التحول.</p>
+    <div class="list fd d2">
+      <div class="ex"><span class="n">01</span><div><h3>الاستراتيجية والنمو المؤسسي</h3><small>Strategy &amp; Growth</small></div><p>نطوّر التوجهات والخطط الاستراتيجية وأطر قياس الأداء ومؤشراته، ونربط الأهداف المؤسسية بمسارات تنفيذ واضحة.</p><span class="ar"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></span></div>
+      <div class="ex"><span class="n">02</span><div><h3>إعادة الهيكلة والنموذج التشغيلي</h3><small>Restructuring &amp; Operating Model</small></div><p>نصمم الهياكل التنظيمية ونماذج التشغيل، ونوضح الأدوار والصلاحيات، ونحسّن العمليات بما يناسب احتياج المنظمة.</p><span class="ar"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></span></div>
+      <div class="ex"><span class="n">03</span><div><h3>الحوكمة</h3><small>Governance</small></div><p>نطوّر أطر الحوكمة والسياسات والإجراءات التي تعزز وضوح المسؤوليات وفاعلية الرقابة والمساءلة.</p><span class="ar"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></span></div>
+      <div class="ex"><span class="n">04</span><div><h3>إدارة المخاطر واستمرارية الأعمال</h3><small>Risk Management &amp; Business Continuity</small></div><p>نحدد المخاطر ونقيّمها، ونبني الأطر والإجراءات التي تدعم جاهزية المنظمة واستمرارية أعمالها.</p><span class="ar"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></span></div>
+      <div class="ex"><span class="n">05</span><div><h3>التحول المؤسسي وإدارة المبادرات</h3><small>Institutional Transformation</small></div><p>ننظم مبادرات التحول ونتابع تنفيذها، ونربطها بالأهداف والمستهدفات الاستراتيجية.</p><span class="ar"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></span></div>
+      <div class="ex"><span class="n">06</span><div><h3>إعادة البناء وتحسين الأداء</h3><small>Performance Improvement</small></div><p>نساند المنظمات في معالجة تحديات الأداء وترتيب الأولويات، وبناء خطة عملية للتحسين والنمو.</p><span class="ar"><svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></span></div>
     </div>
-    <div class="steps">
-      <div class="s r"><div class="dot">01</div><h3>الفهم والتشخيص</h3><p>نجمع المعلومات وندرس الوضع الراهن لتحديد الفجوات وفرص التطوير.</p><b>تحديد الفجوات وفرص التطوير</b></div>
-      <div class="s r"><div class="dot">02</div><h3>تصميم الحلول</h3><p>نصوغ الحلول والتوصيات المناسبة لواقع المنظمة، ونحدد أولوياتها ومتطلبات تنفيذها.</p><b>حلول مرتبة حسب الأولوية</b></div>
-      <div class="s r"><div class="dot">03</div><h3>التخطيط ودعم التنفيذ</h3><p>نحوّل التوصيات إلى خطة بمسؤوليات وأطر زمنية واضحة، وندعم التنفيذ وفق نطاق العمل المعتمد.</p><b>خطة عمل ومسؤوليات واضحة</b></div>
-      <div class="s r"><div class="dot">04</div><h3>المتابعة وقياس النتائج</h3><p>نتابع التقدم ونراجع المخرجات، ونقيس النتائج وفق مؤشرات متفق عليها، ونختم بتقرير نهائي.</p><b>مؤشرات متفق عليها وتقرير نهائي</b></div>
-    </div>
-    <p class="note r">لكل مرحلة غاية واضحة، ومخرجات تدعم المرحلة التالية.</p>
   </div>
 </section>
 
-<section class="why has-wm" id="why">
-  <span class="wm">07</span>
+<!-- 06 METHOD -->
+<section class="scene method" id="method">
+  <div class="bg" data-speed=".2"></div>
+  <div class="wrap">
+    <div class="chap"><span class="en">Scene 06 — Methodology</span><i></i></div>
+    <h2><span class="rv"><span>منهجية عملنا</span></span></h2>
+    <p class="sub fd d1">من التشخيص إلى قياس النتائج.</p>
+    <div class="tl" id="tl"><div class="fill" id="tlf"></div>
+      <div class="st"><div class="card"><span class="n">01</span><h3>الفهم والتشخيص</h3><p>نجمع المعلومات وندرس الوضع الراهن لتحديد الفجوات وفرص التطوير.</p><b>تحديد الفجوات وفرص التطوير</b></div><div class="dot"></div></div>
+      <div class="st"><div class="card"><span class="n">02</span><h3>تصميم الحلول</h3><p>نصوغ الحلول والتوصيات المناسبة لواقع المنظمة، ونحدد أولوياتها ومتطلبات تنفيذها.</p><b>حلول مرتبة حسب الأولوية</b></div><div class="dot"></div></div>
+      <div class="st"><div class="card"><span class="n">03</span><h3>التخطيط ودعم التنفيذ</h3><p>نحوّل التوصيات إلى خطة بمسؤوليات وأطر زمنية واضحة، وندعم التنفيذ وفق نطاق العمل المعتمد.</p><b>خطة عمل ومسؤوليات واضحة</b></div><div class="dot"></div></div>
+      <div class="st"><div class="card"><span class="n">04</span><h3>المتابعة وقياس النتائج</h3><p>نتابع التقدم ونراجع المخرجات، ونقيس النتائج وفق مؤشرات متفق عليها، ونختم بتقرير نهائي.</p><b>مؤشرات متفق عليها وتقرير نهائي</b></div><div class="dot"></div></div>
+    </div>
+    <p class="note fd">لكل مرحلة غاية واضحة، ومخرجات تدعم المرحلة التالية.</p>
+  </div>
+</section>
+
+<!-- 07 WHY -->
+<section class="scene why" id="why">
   <div class="wrap grid">
-    <div class="sticky r">
-      <div class="eyebrow">07 <span class="en">WHY LOMENUR</span></div>
-      <h2>لماذا لومنور</h2>
-      <p class="lead">حلول مصممة وفق واقع كل منظمة، لا قوالب جاهزة.</p>
+    <div class="sticky">
+      <div class="chap"><span class="en">Scene 07 — Why Lomenur</span><i></i></div>
+      <h2><span class="rv"><span>لماذا لومنور</span></span></h2>
+      <p class="sub fd d1">حلول مصممة وفق واقع كل منظمة، لا قوالب جاهزة.</p>
     </div>
-    <ul class="wl r">
-      <li><span class="num">01</span><h4>الخبرة</h4><p>فهم للتحديات التنظيمية والاستراتيجية، وخبرة متراكمة منذ عام 2020.</p></li>
-      <li><span class="num">02</span><h4>الموثوقية</h4><p>وضوح في الطرح والتزام بالمسؤولية المهنية وموضوعية المشورة.</p></li>
-      <li><span class="num">03</span><h4>المنهجية</h4><p>خطوات منظمة ومدروسة، لكل منها غاية ومخرجات.</p></li>
-      <li><span class="num">04</span><h4>الاستشراف</h4><p>قراءة المتغيرات المستقبلية عند بناء التوجهات واتخاذ القرارات.</p></li>
-      <li><span class="num">05</span><h4>الفاعلية</h4><p>ربط المخرجات الاستشارية بإمكانات التطبيق وقياس النتائج.</p></li>
+    <ul class="wl fd d2">
+      <li><span class="n">01</span><h4>الخبرة</h4><p>فهم للتحديات التنظيمية والاستراتيجية، وخبرة متراكمة منذ عام 2020.</p></li>
+      <li><span class="n">02</span><h4>الموثوقية</h4><p>وضوح في الطرح والتزام بالمسؤولية المهنية وموضوعية المشورة.</p></li>
+      <li><span class="n">03</span><h4>المنهجية</h4><p>خطوات منظمة ومدروسة، لكل منها غاية ومخرجات.</p></li>
+      <li><span class="n">04</span><h4>الاستشراف</h4><p>قراءة المتغيرات المستقبلية عند بناء التوجهات واتخاذ القرارات.</p></li>
+      <li><span class="n">05</span><h4>الفاعلية</h4><p>ربط المخرجات الاستشارية بإمكانات التطبيق وقياس النتائج.</p></li>
     </ul>
   </div>
 </section>
 
-<section class="impact has-wm" id="impact">
-  <span class="wm">08</span>
+<!-- 08 IMPACT -->
+<section class="scene impact" id="impact">
+  <div class="bg" data-speed=".2"></div>
   <div class="wrap">
-    <div class="r">
-      <div class="eyebrow">08 <span class="en">OUR IMPACT</span></div>
-      <h2>القيمة التي نصنعها</h2>
-      <p class="lead">نحوّل التحليل إلى حلول عملية مرتبطة بواقع المنظمة وأهدافها.</p>
-    </div>
-    <div class="cards3">
-      <div class="c r"><h3>وضوح القرار</h3><p>تحليل منظم يساند القيادات في تحديد الأولويات واتخاذ قرارات مدروسة.</p></div>
-      <div class="c r"><h3>كفاءة التشغيل</h3><p>أدوار وعمليات أكثر وضوحاً، وربط أدق بين المسؤوليات والتنفيذ.</p></div>
-      <div class="c r"><h3>جاهزية للنمو والتحول</h3><p>خطط ومبادرات تعزز قدرة المنظمة على التعامل مع التغيير ومواصلة التطور.</p></div>
+    <div class="chap"><span class="en">Scene 08 — Impact</span><i></i></div>
+    <h2><span class="rv"><span>القيمة التي نصنعها</span></span></h2>
+    <p class="sub fd d1">نحوّل التحليل إلى حلول عملية مرتبطة بواقع المنظمة وأهدافها.</p>
+    <div class="imp fd d2">
+      <div><span class="n">01</span><h3>وضوح القرار</h3><p>تحليل منظم يساند القيادات في تحديد الأولويات واتخاذ قرارات مدروسة.</p></div>
+      <div><span class="n">02</span><h3>كفاءة التشغيل</h3><p>أدوار وعمليات أكثر وضوحاً، وربط أدق بين المسؤوليات والتنفيذ.</p></div>
+      <div><span class="n">03</span><h3>جاهزية للنمو والتحول</h3><p>خطط ومبادرات تعزز قدرة المنظمة على التعامل مع التغيير ومواصلة التطور.</p></div>
     </div>
   </div>
 </section>
 
-<section class="contact has-wm" id="contact">
-  <span class="wm">09</span>
+<!-- 09 CONTACT -->
+<section class="scene contact" id="contact">
   <div class="wrap grid">
-    <div class="r">
-      <div class="eyebrow">09 <span class="en">CONTACT US</span></div>
-      <h2>تواصل معنا</h2>
-      <p class="lead">للتعرّف على خدمات لومنور ومناقشة احتياجات منظمتكم، يسعدنا تواصلكم معنا.</p>
-      <div class="ci">
-        <div><span class="ico"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><small>البريد الإلكتروني</small><a href="mailto:info@lomenur.com">info@lomenur.com</a></div>
-        <div><span class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><small>رقم التواصل</small><a href="tel:+966561192222">+966 56 119 2222</a></div>
-        <div><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><small>الموقع الإلكتروني</small><a href="https://www.lomenur.com">www.lomenur.com</a></div>
-        <div><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6-7-11a7 7 0 0 1 14 0c0 5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span><small>المقر</small><span class="ar">الرياض، المملكة العربية السعودية</span></div>
+    <div>
+      <div class="chap"><span class="en">Scene 09 — Contact</span><i></i></div>
+      <p class="huge"><span class="rv"><span>لنبدأ الحوار</span></span><span class="rv"><span><b>حول منظمتكم.</b></span></span></p>
+      <p class="sub fd d2">للتعرّف على خدمات لومنور ومناقشة احتياجات منظمتكم، يسعدنا تواصلكم معنا.</p>
+      <div class="btns fd d3">
+        <a href="mailto:info@lomenur.com" class="btn">راسلنا <svg viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg></a>
+        <a href="https://wa.me/966561192222" target="_blank" rel="noopener" class="link" style="align-self:center">واتساب مباشر</a>
       </div>
     </div>
-    <div class="cta r">
-      <h3>من الرؤية إلى الأثر</h3>
-      <p>ابدأ حواراً مع فريق لومنور حول تحديات منظمتك وأولوياتها، ودعنا نرسم معاً مسار التطوير.</p>
-      <a href="mailto:info@lomenur.com" class="btn solid">راسلنا الآن</a><a href="https://wa.me/966561192222" target="_blank" rel="noopener" class="btn">واتساب</a>
+    <div class="ci fd d2">
+      <a href="mailto:info@lomenur.com"><small>البريد الإلكتروني</small><span>info@lomenur.com</span></a>
+      <a href="tel:+966561192222"><small>رقم التواصل</small><span>+966 56 119 2222</span></a>
+      <a href="https://www.lomenur.com"><small>الموقع الإلكتروني</small><span>www.lomenur.com</span></a>
+      <div><small>المقر</small><span class="ar">الرياض، المملكة العربية السعودية</span></div>
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <div class="brand"><img src="assets/logo.png" alt="" style="width:28px"><b style="color:#fff;letter-spacing:.3em;font-family:system-ui">LOMENUR</b></div>
-    <ul class="fnav"><li><a href="#about">من نحن</a></li><li><a href="#expertise">خبراتنا</a></li><li><a href="#method">منهجيتنا</a></li><li><a href="#contact">تواصل</a></li></ul>
-    <span class="tg">WWW.LOMENUR.COM</span>
+    <div class="brand"><img src="assets/logo.png" alt="" style="width:26px"><b>LOMENUR</b></div>
+    <span class="en" style="color:var(--faint)">From Vision to Impact</span>
     <span>© 2026 لومنور للاستشارات الإدارية والاستراتيجية</span>
     <span class="dis">الصور المعمارية تصوّرية، ولا تمثل مقرات الشركة أو مشروعاتها.</span>
   </div>
 </footer>
 
-<div class="prog" id="prog"></div>
 <div class="fab">
   <a class="wa" href="https://wa.me/966561192222" target="_blank" rel="noopener" aria-label="واتساب"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.8 12 12 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg></a>
-  <button class="top" id="top-btn" aria-label="إلى الأعلى"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+  <button class="top" id="topb" aria-label="إلى الأعلى"><svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 </div>
-<script>
-if(!location.search.includes('static')&&'IntersectionObserver' in window)document.documentElement.classList.add('js');
-const h=document.getElementById('hdr');addEventListener('scroll',()=>h.classList.toggle('on',scrollY>40),{passive:true});
-const m=document.getElementById('menu');document.getElementById('burger').onclick=()=>m.classList.toggle('open');
-m.querySelectorAll('a').forEach(a=>a.onclick=()=>m.classList.remove('open'));
-const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-document.querySelectorAll('.r').forEach(el=>io.observe(el));
 
-const pb=document.getElementById('prog'),tb=document.getElementById('top-btn');
-addEventListener('scroll',()=>{const d=document.documentElement;pb.style.width=(scrollY/(d.scrollHeight-innerHeight)*100)+'%';tb.classList.toggle('show',scrollY>600)},{passive:true});
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const B=document.body,st=location.search.includes('static');if(st){B.classList.remove('intro','lock');$('#pre').classList.add('done')}
+// preloader + letterbox
+addEventListener('load',()=>{setTimeout(()=>{$('#pre').classList.add('done');B.classList.remove('lock');setTimeout(()=>B.classList.remove('intro'),1200)},st?0:1900)});
+// menu
+const mb=$('#mb');mb.onclick=()=>{B.classList.toggle('nav-open');$('#mbt').textContent=B.classList.contains('nav-open')?'إغلاق':'القائمة'};
+$$('.menu a').forEach(a=>a.onclick=()=>{B.classList.remove('nav-open');$('#mbt').textContent='القائمة'});
+// reveal
+if(!st){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.18});
+$$('.scene:not(.hero),.st').forEach(el=>io.observe(el));}else{$$('.scene,.st').forEach(el=>el.classList.add('in'))}
+// parallax + progress + timeline
+const bgs=$$('.bg[data-speed]'),pb=$('#prog'),tb=$('#topb'),tl=$('#tl'),tlf=$('#tlf');
+let tick=false;
+function frame(){tick=false;const y=scrollY,h=innerHeight,d=document.documentElement;
+  pb.style.width=(y/(d.scrollHeight-h)*100)+'%';tb.classList.toggle('show',y>700);
+  bgs.forEach(b=>{const sp=+b.dataset.speed;if(!sp)return;const r=b.parentElement.getBoundingClientRect();if(r.bottom<0||r.top>h)return;b.style.transform=`translateY(${(r.top+r.height/2-h/2)*sp*-1}px)`});
+  const r=tl.getBoundingClientRect();tlf.style.height=Math.max(0,Math.min(r.height,h*.6-r.top))+'px';}
+addEventListener('scroll',()=>{if(!tick){requestAnimationFrame(frame);tick=true}},{passive:true});frame();
 tb.onclick=()=>scrollTo({top:0,behavior:'smooth'});
-const links=[...document.querySelectorAll('.nav ul a')];const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
-const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){links.forEach(a=>a.classList.toggle('act',a.getAttribute('href')==='#'+e.target.id))}}),{rootMargin:'-40% 0px -55% 0px'});
-secs.forEach(x=>so.observe(x));
+
 </script>
 </body>
 </html>
