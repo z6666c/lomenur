@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>لومنور | استشارات إدارية واستراتيجية</title>
+<meta name="description" content="لومنور شركة سعودية متخصصة في تطوير الأداء المؤسسي والتحول الاستراتيجي — من الرؤية إلى الأثر.">
+<link rel="icon" href="assets/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0b1627;--navy2:#111f35;--navy3:#182a47;
+  --gold:#b08f5c;--gold2:#d4b47e;
+  --ink:#0f1a2b;--muted:#6b7686;--line:#e6e2d8;--paper:#f7f5f0;--white:#fff;
+  --ff:'IBM Plex Sans Arabic',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff);color:var(--ink);background:var(--white);line-height:1.8;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wrap{width:min(1160px,92%);margin-inline:auto}
+section{padding:96px 0}
+.eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font-size:.8rem;letter-spacing:.18em;font-weight:600;text-transform:uppercase}
+.eyebrow::before{content:"";width:36px;height:2px;background:var(--gold)}
+.eyebrow .en{font-family:system-ui,sans-serif}
+h2{font-size:clamp(1.9rem,3.4vw,2.8rem);font-weight:700;line-height:1.3;margin:14px 0 10px}
+.lead{color:var(--muted);font-size:1.1rem;max-width:640px}
+.num{font-family:system-ui,sans-serif;font-weight:300;font-size:2.6rem;color:var(--gold);line-height:1}
+
+/* nav */
+header{position:fixed;inset-inline:0;top:0;z-index:50;transition:.3s;padding:18px 0}
+header.on{background:rgba(11,22,39,.92);backdrop-filter:blur(10px);padding:10px 0;box-shadow:0 2px 20px rgba(0,0,0,.25)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand img{width:38px}
+.brand b{font-family:system-ui,sans-serif;letter-spacing:.3em;font-weight:600;font-size:1rem}
+.nav ul{display:flex;gap:28px;list-style:none}
+.nav ul a{color:rgba(255,255,255,.82);font-size:.92rem;font-weight:500;transition:.2s}
+.nav ul a:hover{color:var(--gold2)}
+.btn{display:inline-block;padding:12px 26px;border:1px solid var(--gold);color:var(--gold2);border-radius:2px;font-weight:600;font-size:.92rem;transition:.25s}
+.btn:hover{background:var(--gold);color:var(--navy)}
+.btn.solid{background:var(--gold);color:var(--navy)}
+.btn.solid:hover{background:var(--gold2)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:1.6rem;cursor:pointer}
+
+/* hero */
+.hero{min-height:clamp(640px,100vh,960px);display:flex;align-items:center;position:relative;color:#fff;padding:140px 0 100px;
+  background:linear-gradient(100deg,rgba(11,22,39,.96) 35%,rgba(11,22,39,.55) 70%,rgba(11,22,39,.35)),url(assets/hero.jpg) center/cover}
+.hero .wrap{position:relative}
+.hero .tag{color:var(--gold2);font-size:.95rem;font-weight:500;margin-bottom:22px}
+.hero h1{font-size:clamp(3rem,7vw,5.6rem);font-weight:700;line-height:1.15;margin-bottom:22px}
+.hero h1 span{color:var(--gold2)}
+.hero p{font-size:clamp(1.1rem,1.8vw,1.4rem);color:rgba(255,255,255,.85);max-width:560px;font-weight:300;margin-bottom:40px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .en{position:absolute;bottom:-50px;inset-inline-start:0;font-family:system-ui,sans-serif;letter-spacing:.35em;font-size:.72rem;color:rgba(255,255,255,.45)}
+.scroll{position:absolute;bottom:30px;inset-inline-end:4%;color:rgba(255,255,255,.5);font-size:.7rem;letter-spacing:.2em;writing-mode:vertical-rl}
+
+/* about */
+.about .grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:center}
+.about .big{font-size:1.5rem;font-weight:600;line-height:1.6;color:var(--navy);margin:18px 0}
+.about p{color:#3b4454;margin-bottom:14px}
+.about .card{background:var(--navy);color:#fff;padding:48px 42px;border-radius:4px;position:relative;overflow:hidden}
+.about .card::after{content:"";position:absolute;inset-inline-end:-40px;bottom:-40px;width:180px;height:180px;border:1px solid rgba(176,143,92,.35);transform:rotate(45deg)}
+.about .card .l{color:var(--gold2);font-size:.8rem;letter-spacing:.15em;margin-bottom:14px}
+.about .card h3{font-size:1.7rem;font-weight:600;line-height:1.5}
+.about .card h3 span{display:block}
+.about .card .y{margin-top:28px;display:flex;gap:40px}
+.about .card .y b{display:block;font-size:2rem;color:var(--gold2);font-family:system-ui,sans-serif;font-weight:400}
+.about .card .y small{color:rgba(255,255,255,.65)}
+
+/* serve */
+.serve{background:var(--paper)}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:48px}
+.c{background:#fff;padding:40px 32px;border-top:3px solid var(--gold);border-radius:3px;box-shadow:0 10px 40px rgba(15,26,43,.05);transition:.3s}
+.c:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(15,26,43,.1)}
+.c h3{font-size:1.25rem;font-weight:600;margin:16px 0 10px;color:var(--navy)}
+.c p{color:var(--muted);font-size:.98rem}
+.partner{margin-top:48px;background:var(--navy);color:#fff;padding:40px 44px;border-radius:4px;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:center}
+.partner h4{font-size:1.4rem;color:var(--gold2);white-space:nowrap}
+.partner p{color:rgba(255,255,255,.8)}
+
+/* vision */
+.vision .two{display:grid;grid-template-columns:1fr 1fr;gap:30px;margin-top:48px}
+.vbox{padding:44px 40px;border:1px solid var(--line);border-radius:4px;position:relative}
+.vbox h3{color:var(--gold);font-size:1rem;letter-spacing:.1em;margin-bottom:14px}
+.vbox p{font-size:1.25rem;font-weight:500;line-height:1.7;color:var(--navy)}
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.v{padding:36px 28px;border-inline-start:1px solid var(--line);text-align:center}
+.v:first-child{border:0}
+.v h4{font-size:1.3rem;color:var(--navy);margin-bottom:6px}
+.v p{color:var(--muted);font-size:.92rem}
+.v i{display:block;width:10px;height:10px;background:var(--gold);transform:rotate(45deg);margin:0 auto 18px}
+
+/* philosophy */
+.philo{background:var(--navy);color:#fff;text-align:center;position:relative;overflow:hidden}
+.philo::before{content:"";position:absolute;inset:0;background:url(assets/hero.jpg) center/cover;opacity:.08}
+.philo .wrap{position:relative}
+.philo .eyebrow{justify-content:center}.philo .eyebrow::before{display:none}
+.philo blockquote{font-size:clamp(1.7rem,3.4vw,2.8rem);font-weight:600;line-height:1.5;max-width:800px;margin:24px auto 28px}
+.philo blockquote span{color:var(--gold2)}
+.philo p{color:rgba(255,255,255,.75);max-width:640px;margin:auto;font-size:1.08rem}
+
+/* expertise */
+.exp .list{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:48px}
+.e{display:grid;grid-template-columns:70px 1fr;gap:18px;padding:34px 30px;border:1px solid var(--line);border-radius:4px;transition:.3s;background:#fff}
+.e:hover{border-color:var(--gold);box-shadow:0 14px 40px rgba(15,26,43,.07)}
+.e .num{font-size:2rem;padding-top:4px}
+.e h3{font-size:1.2rem;font-weight:600;color:var(--navy)}
+.e small{display:block;font-family:system-ui,sans-serif;letter-spacing:.14em;font-size:.68rem;color:var(--gold);margin:4px 0 10px;text-transform:uppercase}
+.e p{color:var(--muted);font-size:.95rem}
+
+/* method */
+.method{background:var(--paper)}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:56px;position:relative}
+.steps::before{content:"";position:absolute;top:28px;inset-inline:12%;height:1px;background:var(--gold);opacity:.5}
+.s{text-align:center;padding:0 18px;position:relative}
+.s .dot{width:56px;height:56px;border-radius:50%;background:var(--navy);color:var(--gold2);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-family:system-ui,sans-serif;font-weight:500;border:4px solid var(--paper);position:relative}
+.s h3{font-size:1.15rem;color:var(--navy);margin-bottom:10px}
+.s p{color:var(--muted);font-size:.93rem;margin-bottom:14px}
+.s b{display:inline-block;font-size:.8rem;color:var(--gold);font-weight:600;border-top:1px solid var(--line);padding-top:10px}
+.method .note{text-align:center;color:var(--muted);margin-top:44px;font-size:.95rem}
+
+/* why */
+.why .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:70px;align-items:start}
+.why .sticky{position:sticky;top:110px}
+.wl{list-style:none;margin-top:10px}
+.wl li{display:grid;grid-template-columns:52px 150px 1fr;gap:16px;align-items:baseline;padding:26px 0;border-bottom:1px solid var(--line)}
+.wl li:first-child{border-top:1px solid var(--line)}
+.wl .num{font-size:1.4rem}
+.wl h4{font-size:1.15rem;color:var(--navy)}
+.wl p{color:var(--muted);font-size:.97rem}
+
+/* impact */
+.impact{background:var(--navy2);color:#fff}
+.impact .cards3 .c{background:var(--navy3);border-top-color:var(--gold);box-shadow:none}
+.impact .c h3{color:#fff}.impact .c p{color:rgba(255,255,255,.7)}
+.impact .lead{color:rgba(255,255,255,.75)}
+
+/* contact */
+.contact .grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.ci{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:10px}
+.ci div{padding:24px;border:1px solid var(--line);border-radius:4px}
+.ci small{display:block;color:var(--gold);font-size:.8rem;letter-spacing:.08em;margin-bottom:8px}
+.ci a,.ci span{font-weight:600;color:var(--navy);font-size:1.02rem;direction:ltr;display:inline-block}
+.ci span.ar{direction:rtl}
+.contact .cta{background:var(--navy);color:#fff;padding:48px 42px;border-radius:4px}
+.contact .cta h3{font-size:1.7rem;margin-bottom:12px}
+.contact .cta p{color:rgba(255,255,255,.75);margin-bottom:28px}
+
+footer{background:var(--navy);color:rgba(255,255,255,.6);padding:36px 0;border-top:1px solid rgba(255,255,255,.08);font-size:.85rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+footer .tg{color:var(--gold2);letter-spacing:.3em;font-family:system-ui,sans-serif;font-size:.72rem}
+footer .dis{width:100%;font-size:.75rem;color:rgba(255,255,255,.35)}
+
+/* reveal */
+.js .r{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.r.in{opacity:1;transform:none}
+
+@media(max-width:960px){
+  .about .grid,.why .grid,.contact .grid,.vision .two,.exp .list{grid-template-columns:1fr}
+  .cards3{grid-template-columns:1fr}
+  .values{grid-template-columns:1fr 1fr}.v{border:0;border-top:1px solid var(--line)}
+  .steps{grid-template-columns:1fr 1fr;gap:34px}.steps::before{display:none}
+  .partner{grid-template-columns:1fr;gap:14px}
+  .wl li{grid-template-columns:40px 1fr}.wl p{grid-column:2}
+  .why .sticky{position:static}
+  .nav ul{display:none;position:absolute;top:100%;inset-inline:0;background:var(--navy);flex-direction:column;padding:20px 6%;gap:18px}
+  .nav ul.open{display:flex}
+  .burger{display:block}
+  .nav .btn{display:none}
+  section{padding:72px 0}
+}
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <div class="wrap nav">
+    <a href="#" class="brand"><img src="assets/logo.png" alt="Lomenur"><b>LOMENUR</b></a>
+    <ul id="menu">
+      <li><a href="#about">من نحن</a></li>
+      <li><a href="#serve">لمن نعمل</a></li>
+      <li><a href="#expertise">خبراتنا</a></li>
+      <li><a href="#method">منهجيتنا</a></li>
+      <li><a href="#why">لماذا لومنور</a></li>
+      <li><a href="#contact">تواصل معنا</a></li>
+    </ul>
+    <a href="#contact" class="btn">ابدأ الحوار</a>
+    <button class="burger" id="burger" aria-label="القائمة">☰</button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap">
+    <p class="tag">استشارات إدارية واستراتيجية — الملف التعريفي للشركة</p>
+    <h1>من الرؤية<br><span>إلى الأثر</span></h1>
+    <p>تطوير الأداء المؤسسي والتحول الاستراتيجي. نفهم الواقع، نحدد الأولويات، ونساند التنفيذ.</p>
+    <div class="cta">
+      <a href="#expertise" class="btn solid">مجالات خبرتنا</a>
+      <a href="#contact" class="btn">تواصل معنا</a>
+    </div>
+    <span class="en">LOMENUR COMPANY PROFILE</span>
+  </div>
+  <span class="scroll">SCROLL</span>
+</section>
+
+<section class="about" id="about">
+  <div class="wrap grid">
+    <div class="r">
+      <div class="eyebrow">01 <span class="en">ABOUT US</span></div>
+      <h2>من نحن</h2>
+      <p class="big">نؤسس لما يستمر.</p>
+      <p>لومنور شركة سعودية متخصصة في تطوير الأداء المؤسسي والتحول الاستراتيجي، تواصل مسيرة استشارية بدأت عام 2020 تحت اسم «مدد».</p>
+      <p>هوية مؤسسية تعكس تطوّر توجهها واتساع رؤيتها لدور الاستشارات في بناء المنظمات.</p>
+      <p>نصمم حلولاً عملية في الاستراتيجية والحوكمة والهيكلة وإدارة المخاطر والتحول المؤسسي وتحسين الأداء، بما يربط التوصيات باحتياجات المنظمة ونتائجها.</p>
+    </div>
+    <div class="card r">
+      <div class="l">نهجنا</div>
+      <h3><span>نفهم الواقع.</span><span>نحدد الأولويات.</span><span>نساند التنفيذ.</span></h3>
+      <div class="y">
+        <div><b>2020</b><small>بداية المسيرة الاستشارية</small></div>
+        <div><b>06</b><small>مجالات خبرة متكاملة</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="serve" id="serve">
+  <div class="wrap">
+    <div class="r">
+      <div class="eyebrow">02 <span class="en">WHO WE SERVE</span></div>
+      <h2>لمن نعمل</h2>
+      <p class="lead">نساند المنظمات في مراحل التطوير والتحول.</p>
+    </div>
+    <div class="cards3">
+      <div class="c r"><span class="num">01</span><h3>الجهات الحكومية وشبه الحكومية</h3><p>تطوير الاستراتيجيات والحوكمة والهياكل بما يدعم المستهدفات المؤسسية.</p></div>
+      <div class="c r"><span class="num">02</span><h3>الشركات والمؤسسات الكبرى</h3><p>رفع كفاءة الأداء، ومواءمة التنفيذ مع التوجهات الاستراتيجية.</p></div>
+      <div class="c r"><span class="num">03</span><h3>المنشآت في مراحل النمو أو إعادة الهيكلة</h3><p>بناء هياكل ونماذج تشغيل تواكب مرحلة النمو أو التحول.</p></div>
+    </div>
+    <div class="partner r">
+      <h4>شراكة مع صُنّاع القرار</h4>
+      <p>مجالس الإدارة والرؤساء التنفيذيون والقيادات العليا ومديرو الاستراتيجية والتطوير والحوكمة والمخاطر؛ لتطوير منظومات الحوكمة والأداء وإدارة مبادرات التحول.</p>
+    </div>
+  </div>
+</section>
+
+<section class="vision" id="vision">
+  <div class="wrap">
+    <div class="r">
+      <div class="eyebrow">03 <span class="en">VISION &amp; VALUES</span></div>
+      <h2>رؤيتنا ورسالتنا وقيمنا</h2>
+    </div>
+    <div class="two">
+      <div class="vbox r"><h3>رؤيتنا</h3><p>أن نكون بيت خبرة سعودياً مرجعياً في تطوير الأداء والتحول المؤسسي، بحضور مؤثر في المملكة ودول الخليج.</p></div>
+      <div class="vbox r"><h3>رسالتنا</h3><p>تمكين المنظمات من تطوير أدائها عبر استشارات تجمع بين التحليل والتنفيذ، وتحوّل التحديات إلى قرارات أوضح وحلول قابلة للتطبيق.</p></div>
+    </div>
+    <div class="values r">
+      <div class="v"><i></i><h4>الدقة</h4><p>تحليل منهجي وفهم متعمق</p></div>
+      <div class="v"><i></i><h4>النزاهة</h4><p>شفافية وموضوعية المشورة</p></div>
+      <div class="v"><i></i><h4>الشراكة</h4><p>ثقة وفهم مشترك للأهداف</p></div>
+      <div class="v"><i></i><h4>الأثر</h4><p>خطوات عملية وتحسّن ملموس</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="philo">
+  <div class="wrap r">
+    <div class="eyebrow">04 <span class="en">OUR PHILOSOPHY</span></div>
+    <blockquote>تبدأ الاستشارة بفهم التحدي، وتكتمل قيمتها حين تصبح <span>جزءاً من الحل.</span></blockquote>
+    <p>نؤمن بأن قيمة الاستشارة تُقاس بما تُحدثه من تطور في منظومة العمل، وما تتركه من أثر يمتد إلى ما بعد انتهاء المشروع.</p>
+  </div>
+</section>
+
+<section class="exp" id="expertise">
+  <div class="wrap">
+    <div class="r">
+      <div class="eyebrow">05 <span class="en">OUR EXPERTISE</span></div>
+      <h2>مجالات خبرتنا</h2>
+      <p class="lead">نبني أسس التوجه والتنظيم، ونرفع الجاهزية وندعم التحول.</p>
+    </div>
+    <div class="list">
+      <div class="e r"><span class="num">01</span><div><h3>الاستراتيجية والنمو المؤسسي</h3><small>Strategy &amp; Growth</small><p>نطوّر التوجهات والخطط الاستراتيجية وأطر قياس الأداء ومؤشراته، ونربط الأهداف المؤسسية بمسارات تنفيذ واضحة.</p></div></div>
+      <div class="e r"><span class="num">02</span><div><h3>إعادة الهيكلة والنموذج التشغيلي</h3><small>Restructuring &amp; Operating Model</small><p>نصمم الهياكل التنظيمية ونماذج التشغيل، ونوضح الأدوار والصلاحيات، ونحسّن العمليات بما يناسب احتياج المنظمة.</p></div></div>
+      <div class="e r"><span class="num">03</span><div><h3>الحوكمة</h3><small>Governance</small><p>نطوّر أطر الحوكمة والسياسات والإجراءات التي تعزز وضوح المسؤوليات وفاعلية الرقابة والمساءلة.</p></div></div>
+      <div class="e r"><span class="num">04</span><div><h3>إدارة المخاطر واستمرارية الأعمال</h3><small>Risk Management &amp; Business Continuity</small><p>نحدد المخاطر ونقيّمها، ونبني الأطر والإجراءات التي تدعم جاهزية المنظمة واستمرارية أعمالها.</p></div></div>
+      <div class="e r"><span class="num">05</span><div><h3>التحول المؤسسي وإدارة المبادرات</h3><small>Institutional Transformation</small><p>ننظم مبادرات التحول ونتابع تنفيذها، ونربطها بالأهداف والمستهدفات الاستراتيجية.</p></div></div>
+      <div class="e r"><span class="num">06</span><div><h3>إعادة البناء وتحسين الأداء</h3><small>Performance Improvement</small><p>نساند المنظمات في معالجة تحديات الأداء وترتيب الأولويات، وبناء خطة عملية للتحسين والنمو.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="method" id="method">
+  <div class="wrap">
+    <div class="r">
+      <div class="eyebrow">06 <span class="en">METHODOLOGY</span></div>
+      <h2>منهجية عملنا</h2>
+      <p class="lead">من التشخيص إلى قياس النتائج.</p>
+    </div>
+    <div class="steps">
+      <div class="s r"><div class="dot">01</div><h3>الفهم والتشخيص</h3><p>نجمع المعلومات وندرس الوضع الراهن لتحديد الفجوات وفرص التطوير.</p><b>تحديد الفجوات وفرص التطوير</b></div>
+      <div class="s r"><div class="dot">02</div><h3>تصميم الحلول</h3><p>نصوغ الحلول والتوصيات المناسبة لواقع المنظمة، ونحدد أولوياتها ومتطلبات تنفيذها.</p><b>حلول مرتبة حسب الأولوية</b></div>
+      <div class="s r"><div class="dot">03</div><h3>التخطيط ودعم التنفيذ</h3><p>نحوّل التوصيات إلى خطة بمسؤوليات وأطر زمنية واضحة، وندعم التنفيذ وفق نطاق العمل المعتمد.</p><b>خطة عمل ومسؤوليات واضحة</b></div>
+      <div class="s r"><div class="dot">04</div><h3>المتابعة وقياس النتائج</h3><p>نتابع التقدم ونراجع المخرجات، ونقيس النتائج وفق مؤشرات متفق عليها، ونختم بتقرير نهائي.</p><b>مؤشرات متفق عليها وتقرير نهائي</b></div>
+    </div>
+    <p class="note r">لكل مرحلة غاية واضحة، ومخرجات تدعم المرحلة التالية.</p>
+  </div>
+</section>
+
+<section class="why" id="why">
+  <div class="wrap grid">
+    <div class="sticky r">
+      <div class="eyebrow">07 <span class="en">WHY LOMENUR</span></div>
+      <h2>لماذا لومنور</h2>
+      <p class="lead">حلول مصممة وفق واقع كل منظمة، لا قوالب جاهزة.</p>
+    </div>
+    <ul class="wl r">
+      <li><span class="num">01</span><h4>الخبرة</h4><p>فهم للتحديات التنظيمية والاستراتيجية، وخبرة متراكمة منذ عام 2020.</p></li>
+      <li><span class="num">02</span><h4>الموثوقية</h4><p>وضوح في الطرح والتزام بالمسؤولية المهنية وموضوعية المشورة.</p></li>
+      <li><span class="num">03</span><h4>المنهجية</h4><p>خطوات منظمة ومدروسة، لكل منها غاية ومخرجات.</p></li>
+      <li><span class="num">04</span><h4>الاستشراف</h4><p>قراءة المتغيرات المستقبلية عند بناء التوجهات واتخاذ القرارات.</p></li>
+      <li><span class="num">05</span><h4>الفاعلية</h4><p>ربط المخرجات الاستشارية بإمكانات التطبيق وقياس النتائج.</p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="impact" id="impact">
+  <div class="wrap">
+    <div class="r">
+      <div class="eyebrow">08 <span class="en">OUR IMPACT</span></div>
+      <h2>القيمة التي نصنعها</h2>
+      <p class="lead">نحوّل التحليل إلى حلول عملية مرتبطة بواقع المنظمة وأهدافها.</p>
+    </div>
+    <div class="cards3">
+      <div class="c r"><h3>وضوح القرار</h3><p>تحليل منظم يساند القيادات في تحديد الأولويات واتخاذ قرارات مدروسة.</p></div>
+      <div class="c r"><h3>كفاءة التشغيل</h3><p>أدوار وعمليات أكثر وضوحاً، وربط أدق بين المسؤوليات والتنفيذ.</p></div>
+      <div class="c r"><h3>جاهزية للنمو والتحول</h3><p>خطط ومبادرات تعزز قدرة المنظمة على التعامل مع التغيير ومواصلة التطور.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap grid">
+    <div class="r">
+      <div class="eyebrow">09 <span class="en">CONTACT US</span></div>
+      <h2>تواصل معنا</h2>
+      <p class="lead">للتعرّف على خدمات لومنور ومناقشة احتياجات منظمتكم، يسعدنا تواصلكم معنا.</p>
+      <div class="ci">
+        <div><small>البريد الإلكتروني</small><a href="mailto:info@lomenur.com">info@lomenur.com</a></div>
+        <div><small>رقم التواصل</small><a href="tel:+966561192222">+966 56 119 2222</a></div>
+        <div><small>الموقع الإلكتروني</small><a href="https://www.lomenur.com">www.lomenur.com</a></div>
+        <div><small>المقر</small><span class="ar">الرياض، المملكة العربية السعودية</span></div>
+      </div>
+    </div>
+    <div class="cta r">
+      <h3>من الرؤية إلى الأثر</h3>
+      <p>ابدأ حواراً مع فريق لومنور حول تحديات منظمتك وأولوياتها، ودعنا نرسم معاً مسار التطوير.</p>
+      <a href="mailto:info@lomenur.com" class="btn solid">راسلنا الآن</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand"><img src="assets/logo.png" alt="" style="width:28px"><b style="color:#fff;letter-spacing:.3em;font-family:system-ui">LOMENUR</b></div>
+    <span class="tg">WWW.LOMENUR.COM</span>
+    <span>© 2026 لومنور للاستشارات الإدارية والاستراتيجية</span>
+    <span class="dis">الصور المعمارية تصوّرية، ولا تمثل مقرات الشركة أو مشروعاتها.</span>
+  </div>
+</footer>
+
+<script>
+if(!location.search.includes('static')&&'IntersectionObserver' in window)document.documentElement.classList.add('js');
+const h=document.getElementById('hdr');addEventListener('scroll',()=>h.classList.toggle('on',scrollY>40),{passive:true});
+const m=document.getElementById('menu');document.getElementById('burger').onclick=()=>m.classList.toggle('open');
+m.querySelectorAll('a').forEach(a=>a.onclick=()=>m.classList.remove('open'));
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.r').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
